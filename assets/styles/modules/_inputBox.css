@@ -1,0 +1,7 @@
+.input-box{
+    display:block;
+    border-radius: 0.2rem;
+    border:.1rem solid gainsboro;
+    width:30rem;
+    height:2rem;
+}

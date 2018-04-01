@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="Temp/styles/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./app/crud-app.js"></script>
+    <script src="./Item/item.js"></script>
+    <script src="./models/crud-factory.js"></script>
+    <script src="./controllers/crud-controller.js"></script>
+    <script src="./node_modules/ngstorage/ngStorage.min.js"></script>
+</head>
+<body ng-app="crud-app">
+    <div ng-controller="crud-controller">
+    <label>Enter Item Id</label><input type="text" class="input-box" ng-model="id">
+    <label>Enter Item Name</label><input type="text" class="input-box" ng-model="name">
+    <label>Enter Item Url</label><input type="text" class="input-box" ng-model="url">
+    <button class="btn btn-orange" ng-click="addItem()">AddItem</button>
+    <button class="btn btn-red" ng-click="deleteSelectedItems()">Delete</button>
+    <button class="btn btn-green" ng-click="saveWork()">SaveWork</button>
+    <button ng-click="load()" class="btn btn-violet">Load</button>
+    <button ng-click="sort()" class="btn">Sort</button>
+    <br/>
+    <label>Search Item</label><input class="input-box" type="text" ng-model="searchTerm" 
+    placeholder="search here">
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Url</td>
+                <td>Operations</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items |orderBy:sortById |filter:searchTerm" ng-class="{red:item.markForDelete}">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td><img ng-src="{{item.url}}" width="50px" height="50px"></td>
+            <td><img src="https://image.flaticon.com/icons/png/128/61/61391.png" 
+                ng-click="toggle(item)" width="50px" height="50px"></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
